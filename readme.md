@@ -1,133 +1,140 @@
-# Assignment 5 – Advanced Modular Calculator
+# 🧮 Assignment 5 - Advanced Modular Calculator
 
-![Coverage](./coverage.svg)
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Tests](https://img.shields.io/badge/tests-passing-success)
 
-## 👨‍💻 Author
-**Muhammad Arham**  
-Date: October 2025  
-
----
-
-## 📖 Overview
-This project is a **professional-grade command-line calculator** built with Python.  
-It demonstrates the use of **advanced design patterns**, **persistent data handling**, and **automated testing with CI/CD**.
-
-The calculator provides:
-- Continuous **REPL interface**
-- Arithmetic operations: `add`, `subtract`, `multiply`, `divide`, `power`, and `root`
-- Full **undo/redo** history tracking using the **Memento Pattern**
-- **Auto-saving history** to CSV files using **pandas**
-- **Observer Pattern** for logging and event tracking
-- **Strategy Pattern** for interchangeable operation execution
-- **Factory Pattern** for object creation
-- **Facade Pattern** to simplify subsystem access
-- **dotenv configuration** for environment-based settings
-- Rich commands:  
-  `help`, `history`, `clear`, `undo`, `redo`, `save`, `load`, and `exit`
+**Author:** Muhammad Arham  
+**Date:** October 2025  
 
 ---
 
-## 🗂️ Project Structure
+## 📖 Project Overview
+
+This project is a **professional-grade, modular calculator application** built with **Python**.  
+It integrates **advanced design patterns**, **persistent data management using pandas**, and **automated CI/CD testing with GitHub Actions**.
+
+The goal of this project is to demonstrate the use of clean architecture, modular design, and full test automation while applying real-world software development principles.
+
+---
+
+## 🚀 Key Features
+
+- 🧩 **Design Patterns**
+  - **Factory Pattern** – Creates operation objects dynamically.
+  - **Strategy Pattern** – Defines interchangeable algorithms for operations.
+  - **Observer Pattern** – Reacts to calculation events (logging, auto-saving).
+  - **Memento Pattern** – Enables undo and redo functionality.
+  - **Facade Pattern** – Simplifies interactions between multiple components.
+
+- ⚙️ **Advanced Operations**
+  - Addition  
+  - Subtraction  
+  - Multiplication  
+  - Division  
+  - Power  
+  - Root  
+
+- 🧠 **Error Handling**
+  - Implements **LBYL (Look Before You Leap)** and **EAFP (Easier to Ask Forgiveness than Permission)** paradigms.
+  - Graceful handling of invalid inputs and division by zero.
+
+- 📊 **Persistent Data Management**
+  - Uses **pandas DataFrame** for maintaining and saving calculation history.
+  - Supports auto-saving and loading history from CSV files.
+
+- ⚡ **Configuration System**
+  - Uses `.env` and **environment variables** for flexible configuration.
+  - Validates missing or invalid configurations automatically.
+
+---
+
+## 📂 Project Structure
+
 assignment5/
 │── app/
-│ ├── calculator_repl.py # REPL interface for user interaction
-│ ├── calculator.py # Core logic and Facade pattern
-│ ├── calculation.py # Factory & Strategy patterns
-│ ├── calculator_memento.py # Undo/Redo (Memento pattern)
-│ ├── history.py # Observer for history tracking
-│ ├── calculator_config.py # dotenv configuration management
-│ ├── input_validators.py # Input validation and sanitization
-│ ├── operations.py # Arithmetic operations
-│ ├── exceptions.py # Custom error handling
+│ ├── calculator_repl.py # REPL interface (main program loop)
+│ ├── calculation.py # Core calculation and operation logic
+│ ├── calculator_config.py # Configuration management
+│ ├── calculator_memento.py # Memento pattern (undo/redo state)
+│ ├── exceptions.py # Custom exception handling
+│ ├── history.py # History management with pandas
+│ ├── input_validators.py # Input validation logic
+│ └── operations.py # Arithmetic operation definitions
+│
 │── tests/ # Unit and parameterized tests
-│── .github/workflows/python-app.yml # CI pipeline
-│── requirements.txt # Dependencies
-│── README.md
+│── requirements.txt # Python dependencies
+│── .github/workflows/python-app.yml # GitHub Actions CI workflow
+│── README.md # Documentation (this file)
 
 yaml
 Copy code
 
 ---
 
-## ▶️ Running the Application
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:arhamidrees63/assignment5.git
-   cd assignment5
-Create and activate a virtual environment:
+## ▶️ Run Instructions
 
+### 1️⃣ Clone the repository
+```bash
+git clone git@github.com:arhamidrees63/assignment5.git
+cd assignment5
+2️⃣ Create and activate a virtual environment
 bash
 Copy code
 python3 -m venv venv
-source venv/bin/activate
-Install dependencies:
-
+source venv/bin/activate   # For Mac/Linux
+venv\Scripts\activate      # For Windows
+3️⃣ Install dependencies
 bash
 Copy code
 pip install -r requirements.txt
-Run the calculator:
-
+4️⃣ Run the calculator
 bash
 Copy code
 python app/calculator_repl.py
-🧪 Running Tests
+🧪 Testing and Coverage
 Run all tests with coverage:
 
 bash
 Copy code
 pytest --cov=app --cov-report=term-missing
-⚙️ Continuous Integration
-This project uses GitHub Actions for CI/CD.
-Each push automatically:
+The GitHub Actions CI pipeline automatically runs these tests on every push and enforces 100% test coverage.
 
-Runs all tests
+Coverage results are displayed as badges (see top of README).
 
-Enforces 100% coverage
+💾 Persistent History
+All calculations are stored using pandas.DataFrame and saved in .csv format.
+When you restart the calculator, previous history automatically loads.
 
-Generates a coverage badge
+Example saved data:
 
-🧠 Learning Objectives
-Apply advanced OOP design patterns
-
-Manage persistent data with pandas
-
-Implement full test coverage and CI automation
-
-Demonstrate maintainable, scalable modular code
-
-🧩 Example Usage
-ruby
+sql
 Copy code
->> add 10 5
-Result: 15.0
+operation,operand_a,operand_b,result,timestamp
+add,10,5,15,2025-10-05 12:45:00
+power,2,3,8,2025-10-05 12:47:15
+🧰 Available Commands
+Command	Description
+help	Display usage instructions
+history	Show all previous calculations
+undo	Undo the last operation
+redo	Redo an undone operation
+save	Save calculation history to CSV
+load	Load saved history
+clear	Clear all history
+exit	Exit the calculator
 
->> power 2 3
-Result: 8.0
+🧠 Learning Outcomes
+Apply advanced OOP principles and design patterns.
 
->> undo
-Last action undone.
+Implement data persistence using pandas.
 
->> redo
-Redo successful.
+Practice test-driven development (TDD) with full coverage.
 
->> save
-History saved to calculator_history.csv
+Build and automate CI/CD pipelines using GitHub Actions.
 
->> exit
-Exiting calculator. Goodbye!
-🏁 End
-This project combines design patterns, data management, and testing automation to simulate real-world software engineering standards.
+Develop a clean, modular, and maintainable Python codebase.
 
-yaml
-Copy code
-
----
-
-## ✅ Next Steps for You
-
-1. Copy-paste that README into your repo.  
-2. Run:
-   ```bash
-   git add README.md
-   git commit -m "Update README for Assignment 5"
-   git push origin main
+🏁 Acknowledgments
+This project was completed as part of IS601 – Advanced Systems Development coursework.
+It demonstrates the combination of theoretical design patterns and practical coding applications.
