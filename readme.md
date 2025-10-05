@@ -1,264 +1,133 @@
-# 📦 Project Setup
+# Assignment 5 – Advanced Modular Calculator
+
+![Coverage](./coverage.svg)
+
+## 👨‍💻 Author
+**Muhammad Arham**  
+Date: October 2025  
 
 ---
 
-# 🧩 1. Install Homebrew (Mac Only)
+## 📖 Overview
+This project is a **professional-grade command-line calculator** built with Python.  
+It demonstrates the use of **advanced design patterns**, **persistent data handling**, and **automated testing with CI/CD**.
 
-> Skip this step if you're on Windows.
-
-Homebrew is a package manager for macOS.  
-You’ll use it to easily install Git, Python, Docker, etc.
-
-**Install Homebrew:**
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-**Verify Homebrew:**
-
-```bash
-brew --version
-```
-
-If you see a version number, you're good to go.
+The calculator provides:
+- Continuous **REPL interface**
+- Arithmetic operations: `add`, `subtract`, `multiply`, `divide`, `power`, and `root`
+- Full **undo/redo** history tracking using the **Memento Pattern**
+- **Auto-saving history** to CSV files using **pandas**
+- **Observer Pattern** for logging and event tracking
+- **Strategy Pattern** for interchangeable operation execution
+- **Factory Pattern** for object creation
+- **Facade Pattern** to simplify subsystem access
+- **dotenv configuration** for environment-based settings
+- Rich commands:  
+  `help`, `history`, `clear`, `undo`, `redo`, `save`, `load`, and `exit`
 
 ---
 
-# 🧩 2. Install and Configure Git
+## 🗂️ Project Structure
+assignment5/
+│── app/
+│ ├── calculator_repl.py # REPL interface for user interaction
+│ ├── calculator.py # Core logic and Facade pattern
+│ ├── calculation.py # Factory & Strategy patterns
+│ ├── calculator_memento.py # Undo/Redo (Memento pattern)
+│ ├── history.py # Observer for history tracking
+│ ├── calculator_config.py # dotenv configuration management
+│ ├── input_validators.py # Input validation and sanitization
+│ ├── operations.py # Arithmetic operations
+│ ├── exceptions.py # Custom error handling
+│── tests/ # Unit and parameterized tests
+│── .github/workflows/python-app.yml # CI pipeline
+│── requirements.txt # Dependencies
+│── README.md
 
-## Install Git
-
-- **MacOS (using Homebrew)**
-
-```bash
-brew install git
-```
-
-- **Windows**
-
-Download and install [Git for Windows](https://git-scm.com/download/win).  
-Accept the default options during installation.
-
-**Verify Git:**
-
-```bash
-git --version
-```
-
----
-
-## Configure Git Globals
-
-Set your name and email so Git tracks your commits properly:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your_email@example.com"
-```
-
-Confirm the settings:
-
-```bash
-git config --list
-```
+yaml
+Copy code
 
 ---
 
-## Generate SSH Keys and Connect to GitHub
+## ▶️ Running the Application
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:arhamidrees63/assignment5.git
+   cd assignment5
+Create and activate a virtual environment:
 
-> Only do this once per machine.
-
-1. Generate a new SSH key:
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-
-(Press Enter at all prompts.)
-
-2. Start the SSH agent:
-
-```bash
-eval "$(ssh-agent -s)"
-```
-
-3. Add the SSH private key to the agent:
-
-```bash
-ssh-add ~/.ssh/id_ed25519
-```
-
-4. Copy your SSH public key:
-
-- **Mac/Linux:**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | pbcopy
-```
-
-- **Windows (Git Bash):**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | clip
-```
-
-5. Add the key to your GitHub account:
-   - Go to [GitHub SSH Settings](https://github.com/settings/keys)
-   - Click **New SSH Key**, paste the key, save.
-
-6. Test the connection:
-
-```bash
-ssh -T git@github.com
-```
-
-You should see a success message.
-
----
-
-# 🧩 3. Clone the Repository
-
-Now you can safely clone the course project:
-
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
-
----
-
-# 🛠️ 4. Install Python 3.10+
-
-## Install Python
-
-- **MacOS (Homebrew)**
-
-```bash
-brew install python
-```
-
-- **Windows**
-
-Download and install [Python for Windows](https://www.python.org/downloads/).  
-✅ Make sure you **check the box** `Add Python to PATH` during setup.
-
-**Verify Python:**
-
-```bash
-python3 --version
-```
-or
-```bash
-python --version
-```
-
----
-
-## Create and Activate a Virtual Environment
-
-(Optional but recommended)
-
-```bash
+bash
+Copy code
 python3 -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate.bat  # Windows
-```
+source venv/bin/activate
+Install dependencies:
 
-### Install Required Packages
-
-```bash
+bash
+Copy code
 pip install -r requirements.txt
-```
+Run the calculator:
+
+bash
+Copy code
+python app/calculator_repl.py
+🧪 Running Tests
+Run all tests with coverage:
+
+bash
+Copy code
+pytest --cov=app --cov-report=term-missing
+⚙️ Continuous Integration
+This project uses GitHub Actions for CI/CD.
+Each push automatically:
+
+Runs all tests
+
+Enforces 100% coverage
+
+Generates a coverage badge
+
+🧠 Learning Objectives
+Apply advanced OOP design patterns
+
+Manage persistent data with pandas
+
+Implement full test coverage and CI automation
+
+Demonstrate maintainable, scalable modular code
+
+🧩 Example Usage
+ruby
+Copy code
+>> add 10 5
+Result: 15.0
+
+>> power 2 3
+Result: 8.0
+
+>> undo
+Last action undone.
+
+>> redo
+Redo successful.
+
+>> save
+History saved to calculator_history.csv
+
+>> exit
+Exiting calculator. Goodbye!
+🏁 End
+This project combines design patterns, data management, and testing automation to simulate real-world software engineering standards.
+
+yaml
+Copy code
 
 ---
 
-# 🐳 5. (Optional) Docker Setup
+## ✅ Next Steps for You
 
-> Skip if Docker isn't used in this module.
-
-## Install Docker
-
-- [Install Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
-- [Install Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
-
-## Build Docker Image
-
-```bash
-docker build -t <image-name> .
-```
-
-## Run Docker Container
-
-```bash
-docker run -it --rm <image-name>
-```
-
----
-
-# 🚀 6. Running the Project
-
-- **Without Docker**:
-
-```bash
-python main.py
-```
-
-(or update this if the main script is different.)
-
-- **With Docker**:
-
-```bash
-docker run -it --rm <image-name>
-```
-
----
-
-# 📝 7. Submission Instructions
-
-After finishing your work:
-
-```bash
-git add .
-git commit -m "Complete Module X"
-git push origin main
-```
-
-Then submit the GitHub repository link as instructed.
-
----
-
-# 🔥 Useful Commands Cheat Sheet
-
-| Action                         | Command                                          |
-| ------------------------------- | ------------------------------------------------ |
-| Install Homebrew (Mac)          | `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` |
-| Install Git                     | `brew install git` or Git for Windows installer |
-| Configure Git Global Username  | `git config --global user.name "Your Name"`      |
-| Configure Git Global Email     | `git config --global user.email "you@example.com"` |
-| Clone Repository                | `git clone <repo-url>`                          |
-| Create Virtual Environment     | `python3 -m venv venv`                           |
-| Activate Virtual Environment   | `source venv/bin/activate` / `venv\Scripts\activate.bat` |
-| Install Python Packages        | `pip install -r requirements.txt`               |
-| Build Docker Image              | `docker build -t <image-name> .`                |
-| Run Docker Container            | `docker run -it --rm <image-name>`               |
-| Push Code to GitHub             | `git add . && git commit -m "message" && git push` |
-
----
-
-# 📋 Notes
-
-- Install **Homebrew** first on Mac.
-- Install and configure **Git** and **SSH** before cloning.
-- Use **Python 3.10+** and **virtual environments** for Python projects.
-- **Docker** is optional depending on the project.
-
----
-
-# 📎 Quick Links
-
-- [Homebrew](https://brew.sh/)
-- [Git Downloads](https://git-scm.com/downloads)
-- [Python Downloads](https://www.python.org/downloads/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [GitHub SSH Setup Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+1. Copy-paste that README into your repo.  
+2. Run:
+   ```bash
+   git add README.md
+   git commit -m "Update README for Assignment 5"
+   git push origin main
